@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.PerkinElmer.Service.WuhanSSO", "Com.PerkinElmer.Service.WuhanSSO\Com.PerkinElmer.Service.WuhanSSO.csproj", "{7F3CB55E-602D-424E-B4EB-FEF17D2E5BB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.PerkinElmer.Service.WuhanSSO.FtpTool", "Com.PerkinElmer.Service.WuhanSSO.FtpTool\Com.PerkinElmer.Service.WuhanSSO.FtpTool.csproj", "{776AC63C-7BB1-4727-A349-391122BF497D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F3CB55E-602D-424E-B4EB-FEF17D2E5BB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F3CB55E-602D-424E-B4EB-FEF17D2E5BB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F3CB55E-602D-424E-B4EB-FEF17D2E5BB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F3CB55E-602D-424E-B4EB-FEF17D2E5BB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{776AC63C-7BB1-4727-A349-391122BF497D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{776AC63C-7BB1-4727-A349-391122BF497D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{776AC63C-7BB1-4727-A349-391122BF497D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{776AC63C-7BB1-4727-A349-391122BF497D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
