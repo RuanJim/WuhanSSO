@@ -63,7 +63,7 @@ namespace Com.PerkinElmer.Service.WuhanSSO.FtpTool
                 FluentFTP.FtpClient client = new FluentFTP.FtpClient(host, port, username, password);
 
                 client.Connect();
-                client.Upload(stream, "/" + userId + "/" + sessionId + ".sbdf", FluentFTP.FtpExists.Overwrite, true);
+                client.Upload(stream, "/" + userId + "/" + sessionId + ".xlsx", FluentFTP.FtpExists.Overwrite, true);
                 client.Disconnect();
 
                 stream.Close();
