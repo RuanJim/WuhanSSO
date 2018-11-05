@@ -13,10 +13,35 @@ namespace Com.PerkinElmer.Service.WuhanSSO.FtpTool
     {
         static void Main(string[] args)
         {
+            if (args.Length == 0)
+            {
+
+                return ;
+            }
+
             string sessionId = args[0];
 
             string userId = SaveLogToDb(sessionId);
             SaveFileToFtp(sessionId, userId);
+        }
+
+        static void TestClient()
+        {
+            string host = ConfigurationManager.AppSettings["FTP_HOST"];
+            int port = int.Parse(ConfigurationManager.AppSettings["FTP_PORT"]);
+            string username = ConfigurationManager.AppSettings["FTP_USERNAME"];
+            string password = ConfigurationManager.AppSettings["FTP_PASSWORD"];
+
+            using (FileStream stream = File.Open("C:\\ftp.txt", FileMode.Open))
+            {
+                FluentFTP.FtpClient client = new FluentFTP.FtpClient(host, port, username, password);
+
+                client.Connect();
+                client.Upload(stream, $"/ftp.txt", FluentFTP.FtpExists.Overwrite, true);
+                client.Disconnect();
+
+                stream.Close();
+            }
         }
 
         static string SaveLogToDb(string sessionId)
@@ -57,13 +82,14 @@ namespace Com.PerkinElmer.Service.WuhanSSO.FtpTool
             int port = int.Parse(ConfigurationManager.AppSettings["FTP_PORT"]);
             string username = ConfigurationManager.AppSettings["FTP_USERNAME"];
             string password = ConfigurationManager.AppSettings["FTP_PASSWORD"];
+            string remoteRoot = ConfigurationManager.AppSettings["REMOTE_ROOT"];
 
             using (FileStream stream = File.Open(filename, FileMode.Open))
             {
                 FluentFTP.FtpClient client = new FluentFTP.FtpClient(host, port, username, password);
 
                 client.Connect();
-                client.Upload(stream, $"/{userId}/{userId}_{sessionId}_{DateTime.Now.ToString("yyyyMMddHHmmss")}.xlsx", FluentFTP.FtpExists.Overwrite, true);
+                client.Upload(stream, $"{remoteRoot}/{userId}/{userId}_{sessionId}_{DateTime.Now.ToString("yyyyMMddHHmmss")}.xlsx", FluentFTP.FtpExists.Overwrite, true);
                 client.Disconnect();
 
                 stream.Close();
