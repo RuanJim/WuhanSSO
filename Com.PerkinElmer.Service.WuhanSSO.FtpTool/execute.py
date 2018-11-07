@@ -1,8 +1,11 @@
+# parameters should be created
+# table, DataTable to be exported.
+# ToolPath, The absolute path of the Ftp tool.
+
 from Spotfire.Dxp.Data.Export import DataWriterTypeIdentifiers 
 from System.IO import File
 from System.Diagnostics import Process
 
-table = Document.ActiveDataTableReference
 writer = Document.Data.CreateDataWriter(DataWriterTypeIdentifiers.SbdfDataWriter)
 
 filtering = Document.ActiveFilteringSelectionReference.GetSelection(table).AsIndexSet()
@@ -24,5 +27,5 @@ p.StartInfo.RedirectStandardInput = True
 p.StartInfo.RedirectStandardOutput = True
 p.StartInfo.RedirectStandardError = True
 p.StartInfo.CreateNoWindow = True
-p.StartInfo.Arguments = SessionID
+p.StartInfo.Arguments = SessionID + " EXPORT" + " xlsx"
 p.Start()
