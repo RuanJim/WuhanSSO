@@ -20,9 +20,11 @@ namespace Com.PerkinElmer.Service.WuhanSSO.FtpTool
             }
 
             string sessionId = args[0];
+            string fileName = args[1];
+            string extName = args[2];
 
             string userId = SaveLogToDb(sessionId);
-            SaveFileToFtp(sessionId, userId);
+            SaveFileToFtp(sessionId, userId, fileName, extName);
         }
 
         static void TestClient()
@@ -74,7 +76,7 @@ namespace Com.PerkinElmer.Service.WuhanSSO.FtpTool
             return userId;
         }
 
-        static void SaveFileToFtp(string sessionId, string userId)
+        static void SaveFileToFtp(string sessionId, string userId, string toSave, string extName)
         {
             string filename = ConfigurationManager.AppSettings["SSO_ROOT"] + sessionId;
 
@@ -89,7 +91,7 @@ namespace Com.PerkinElmer.Service.WuhanSSO.FtpTool
                 FluentFTP.FtpClient client = new FluentFTP.FtpClient(host, port, username, password);
 
                 client.Connect();
-                client.Upload(stream, $"{remoteRoot}/{userId}/{userId}_{sessionId}_{DateTime.Now.ToString("yyyyMMddHHmmss")}.xlsx", FluentFTP.FtpExists.Overwrite, true);
+                client.Upload(stream, $"{remoteRoot}{userId}/{userId}_{toSave}_{DateTime.Now.ToString("yyyyMMddHHmmss")}.{extName}", FluentFTP.FtpExists.Overwrite, true);
                 client.Disconnect();
 
                 stream.Close();
