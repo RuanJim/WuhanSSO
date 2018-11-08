@@ -5,6 +5,7 @@ clr.AddReference("System.IO")
  
 from Spotfire.Dxp.Application.Visuals import CrossTablePlot
 from System.IO import TextWriter, File
+from System.Diagnostics import Process
  
 ct = crossTable.As[CrossTablePlot]()
 
