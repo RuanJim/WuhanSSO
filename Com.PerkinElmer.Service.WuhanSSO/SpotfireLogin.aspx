@@ -138,13 +138,24 @@ VALUES
  ,'{userInfo.positionCode}' -- POSITIONCODE - NVARCHAR2(200)
 )";
 
+    string[] departments = userInfo.departmentName.ToString().Split(new char[] { '|' });
+
     using (OracleConnection connection = new OracleConnection(ConfigurationManager.AppSettings["CONNECTION_STRING"]))
     {
         connection.Open();
 
         OracleCommand command = new OracleCommand(sql, connection);
-        
+
         command.ExecuteNonQuery();
+
+        foreach (string department in departments)
+        {
+            string departmentSql = $"INSERT INTO SSO_DEPARTMENT(SESSION_ID, DEPARTMNET), VALUES('{sessionId}', '{department}')";
+
+            OracleCommand departmentCommand = new OracleCommand(departmentSql, connection);
+
+            departmentCommand.ExecuteNonQuery();
+        }
 
         connection.Close();
     }

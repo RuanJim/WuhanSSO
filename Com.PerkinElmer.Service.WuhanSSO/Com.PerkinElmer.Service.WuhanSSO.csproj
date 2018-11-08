@@ -125,6 +125,7 @@
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="SpotfireLogin.aspx" />
     <Content Include="SSO_DOWNLOAD.sql" />
+    <Content Include="SSO_DEPARTMENT.sql" />
     <Content Include="SSO_LOG.sql" />
     <Content Include="TestSession.aspx" />
     <Content Include="Web.config" />
