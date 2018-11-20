@@ -23,7 +23,7 @@ namespace Com.PerkinElmer.Service.WuhanSSO.FtpTool
             string fileName = args[1];
             string extName = args[2];
 
-            string userId = SaveLogToDb(sessionId);
+            string userId = SaveLogToDb(sessionId, fileName, extName);
             SaveFileToFtp(sessionId, userId, fileName, extName);
         }
 
@@ -46,7 +46,7 @@ namespace Com.PerkinElmer.Service.WuhanSSO.FtpTool
             }
         }
 
-        static string SaveLogToDb(string sessionId)
+        static string SaveLogToDb(string sessionId, string toSave, string extName)
         {
             string userId = string.Empty;
 
@@ -64,7 +64,9 @@ namespace Com.PerkinElmer.Service.WuhanSSO.FtpTool
 
                 userId = reader.GetString(0);
 
-                string sql = $"INSERT INTO SSO.SSO_DOWNLOAD (SESSION_ID, USER_ID, DOWNLOAD_TIME) VALUES('{sessionId}','{userId}','{DateTime.Now.ToString()}')";
+                string filename = $"{userId}_{toSave}_{DateTime.Now.ToString("yyyyMMddHHmmss")}.{extName}";
+
+                string sql = $"INSERT INTO SSO.SSO_DOWNLOAD (SESSION_ID, USER_ID, DOWNLOAD_TIME, FILENAME) VALUES('{sessionId}','{userId}','{DateTime.Now.ToString()}', '{filename}')";
 
                 OracleCommand command = new OracleCommand(sql, connection);
 
